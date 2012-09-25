@@ -34,6 +34,7 @@ import java.util.Map;
  * This class is realized a functions of simple http-server
  */
 public class Server {
+    public static final String CHARSET_UTF_8_SUFIX = "; charset=utf-8";
     private Config config;
     private HttpServer server;
     private Logger log = Logger.getLogger(Server.class);
@@ -190,8 +191,8 @@ public class Server {
                 throws IOException {
             OutputStream os = context.getResponseBody();
             try {
-                context.getResponseHeaders().add(CONTENT_TYPE_HEADER, type.getType());
-                context.sendResponseHeaders(status.getStatus(), response.length());
+                context.getResponseHeaders().add(CONTENT_TYPE_HEADER, type.getType() + CHARSET_UTF_8_SUFIX);
+                context.sendResponseHeaders(status.getStatus(), response.getBytes().length);
                 os.write(response.getBytes());
             } finally {
                 os.close();
