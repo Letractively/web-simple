@@ -95,6 +95,13 @@ public class Server {
     }
 
     /**
+     * @return Return config unit
+     */
+    public Config getConfig() {
+        return config;
+    }
+
+    /**
      * Request handler
      */
     private class ServerHandler implements HttpHandler {
