@@ -202,7 +202,11 @@ public class Server {
                 context.sendResponseHeaders(status.getStatus(), response.getBytes().length);
                 os.write(response.getBytes());
             } finally {
-                os.close();
+                try {
+                    os.close();
+                } catch (IOException ex) {
+                    // ignored
+                }
             }
         }
     }
